@@ -56,7 +56,7 @@ public:
         pos = pos.add(vel);
     }
 
-    void show(Screen& screen, std::string text) {
+    void show(Screen& screen, char text) {
         screen.rect(text, pos.x, pos.y, width, height);
     }
 
@@ -197,13 +197,15 @@ int main() {
         screen.reset();
 
         player1.update();
-        player1.show(screen, "O");
+        player1.show(screen, 'O');
 
         player2.update();
-        player2.show(screen, "O");
+        player2.show(screen, 'O');
 
         ball.update();
-        ball.show(screen, "B");
+        ball.show(screen, 'B');
+
+        screen.rect('|', 50, 10, 100, 30);
 
         screen.text("Player 1 score: " + std::to_string(player1Score), 50, 5);
         screen.text("Player 2 score: " + std::to_string(player2Score), 160, 5);

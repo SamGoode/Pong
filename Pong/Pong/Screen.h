@@ -5,15 +5,15 @@ class Screen {
 public:
     int width;
     int height;
-    std::string screenMatrix[200];
+    char screenMatrix[200][400];
 
     Screen(int width, int height);
 
     void reset();
 
-    void input(std::string text, int x, int y);
+    void input(char text, int x, int y);
 
-    void rect(std::string text, int x, int y, int width, int height);
+    void rect(char text, int x, int y, int width, int height);
 
     void text(std::string text, int x, int y);
 
