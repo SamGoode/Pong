@@ -56,7 +56,6 @@ void Screen::text(std::string text, int x, int y) {
 }
 
 void Screen::print() {
-    //system("cls");
     std::cout << "\033[1;1H";
     for (int i = 0; i < height; i++) {
         std::cout << screenMatrix[i];

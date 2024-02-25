@@ -2,8 +2,6 @@
 #include <string>
 #include <windows.h>
 #include <time.h>
-#include <thread>
-#include <atomic>
 #include "Screen.h"
 
 class Vector {
@@ -12,7 +10,8 @@ public:
     int y;
 
     Vector() {
-
+        this->x = NULL;
+        this->y = NULL;
     }
 
     Vector(int x, int y) {
@@ -41,7 +40,8 @@ public:
     std::string text;
 
     GameObject() {
-
+        this->width = NULL;
+        this->height = NULL;
     }
 
     GameObject(int x, int y, int width, int height, std::string text) {
@@ -73,6 +73,8 @@ public:
         else if (edge == "down") {
             return pos.y + height - 1;
         }
+
+        return NULL;
     }
 
     void setEdge(std::string edge, int axisPos) {
@@ -91,24 +93,12 @@ public:
     }
 };
 
-void keyPressed(std::atomic_bool& UP1, std::atomic_bool& DOWN1, std::atomic_bool& UP2, std::atomic_bool& DOWN2, std::atomic_bool& SPACE) {
-    while (true) {
-        UP1 = GetAsyncKeyState(0x57);
-        DOWN1 = GetAsyncKeyState(0x53);
-        UP2 = GetAsyncKeyState(VK_UP);
-        DOWN2 = GetAsyncKeyState(VK_DOWN);
-        SPACE = GetAsyncKeyState(VK_SPACE);
-    }
-}
-
 int main() {
-    std::atomic_bool UP1;
-    std::atomic_bool DOWN1;
-    std::atomic_bool UP2;
-    std::atomic_bool DOWN2;
-    std::atomic_bool SPACE;
-
-    std::thread keyPressedThread(keyPressed, std::ref(UP1), std::ref(DOWN1), std::ref(UP2), std::ref(DOWN2), std::ref(SPACE));
+    bool UP1;
+    bool DOWN1;
+    bool UP2;
+    bool DOWN2;
+    bool SPACE;
 
     Screen screen = Screen(237, 63);
 
@@ -123,6 +113,12 @@ int main() {
     int player2Score = 0;
 
     while (true) {
+        UP1 = GetAsyncKeyState(0x57);
+        DOWN1 = GetAsyncKeyState(0x53);
+        UP2 = GetAsyncKeyState(VK_UP);
+        DOWN2 = GetAsyncKeyState(VK_DOWN);
+        SPACE = GetAsyncKeyState(VK_SPACE);
+
         if (SPACE && !gameRunning) {
             gameRunning = true;
             ball.vel.set(-2, 1);
@@ -216,6 +212,4 @@ int main() {
 
         Sleep(20);
     }
-
-    keyPressedThread.join();
 }
