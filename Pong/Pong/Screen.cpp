@@ -21,23 +21,11 @@ void Screen::reset() {
 }
 
 void Screen::input(char text, int x, int y) {
-    if (y < 0) {
+    if (x < 0 || y < 0) {
         return;
     }
 
     screenMatrix[y][x] = text;
-
-    /*std::string tempString = screenMatrix[y];
-    screenMatrix[y] = "";
-
-    for (int i = 0; i < tempString.length(); i++) {
-        if (i != x) {
-            screenMatrix[y] += tempString[i];
-        }
-        else {
-            screenMatrix[y] += text;
-        }
-    }*/
 }
 
 void Screen::rect(char text, int x, int y, int width, int height) {
@@ -55,8 +43,6 @@ void Screen::text(std::string text, int x, int y) {
 }
 
 void Screen::print() {
-    //std::cout << "\033[1;1H";
-
     std::string printout = "\033[1;1H";
 
     for (int i = 0; i < height; i++) {
