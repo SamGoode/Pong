@@ -1,12 +1,10 @@
-// Pong.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//boom shaka laka
-
 #include <iostream>
 #include <string>
 #include <windows.h>
 #include <time.h>
 #include <thread>
 #include <atomic>
+#include "Screen.h"
 
 class Vector {
 public:
@@ -31,78 +29,6 @@ public:
     void set(int x, int y) {
         this->x = x;
         this->y = y;
-    }
-};
-
-class Screen {
-public:
-    int width;
-    int height;
-    std::string screenMatrix[200];
-
-    Screen(int width, int height) {
-        this->width = width;
-        this->height = height;
-
-        for (int i = 0; i < height; i++) {
-            for (int j = 0; j < width; j++) {
-                screenMatrix[i] += " ";
-            }
-        }
-    }
-
-    void reset() {
-        for (int i = 0; i < height; i++) {
-            screenMatrix[i] = "";
-            for (int j = 0; j < width; j++) {
-                screenMatrix[i] += " ";
-            }
-        }
-    }
-
-    void input(std::string text, int x, int y) {
-        if (y < 0) {
-            return;
-        }
-
-        std::string tempString = screenMatrix[y];
-        screenMatrix[y] = "";
-
-        for (int i = 0; i < tempString.length(); i++) {
-            if (i != x) {
-                screenMatrix[y] += tempString[i];
-            }
-            else {
-                screenMatrix[y] += text;
-            }
-        }
-    }
-
-    void rect(std::string text, int x, int y, int width, int height) {
-        for (int i = x; i < x + width; i++) {
-            for (int j = y; j < y + height; j++) {
-                input(text, i, j);
-            }
-        }
-    }
-
-    void text(std::string text, int x, int y) {
-        for (int i = 0; i < text.length(); i++) {
-            std::string tempString = "";
-            tempString += text[i];
-            input(tempString, x + i, y);
-        }
-    }
-
-    void print() {
-        //system("cls");
-        std::cout << "\033[1;1H";
-        for (int i = 0; i < height; i++) {
-            std::cout << screenMatrix[i];
-            if (i < height - 1) {
-                std::cout << std::endl;
-            }
-        }
     }
 };
 
