@@ -1,5 +1,7 @@
+//#define _CRT_SECURE_NO_WARNINGS
 #include <windows.h>
 #include "Screen.h"
+#include <iostream>
 
 class Vector {
 public:
@@ -91,6 +93,86 @@ public:
 };
 
 int main() {
+    
+    //CONSOLE_FONT_INFOEX cfi;
+    //GetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), false, &cfi);
+    //cfi.cbSize = sizeof(cfi);
+    //cfi.nFont = 0;
+    //cfi.dwFontSize.X = 0;                   // Width of each character in the font
+    //cfi.dwFontSize.Y = 24;                  // Height
+    //cfi.FontFamily = FF_DONTCARE;
+    //cfi.FontWeight = FW_NORMAL;
+    //std::wcscpy(cfi.FaceName, L"Consolas"); // Choose your font
+    //SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE), FALSE, &cfi);
+
+    //std::cout << cfi.dwFontSize.X << std::endl;
+    //CONSOLE_SCREEN_BUFFER_INFO csbi;
+
+    //int columns;
+    //int rows;
+
+    //while (true) {
+    //    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+
+    //    columns = csbi.srWindow.Right - csbi.srWindow.Left + 1;
+    //    rows = csbi.srWindow.Bottom - csbi.srWindow.Top + 1;
+
+    //    std::cout << csbi.dwMaximumWindowSize.X << std::endl;
+    //    std::cout << csbi.dwMaximumWindowSize.Y << std::endl;
+
+    //    std::cout << columns << std::endl;
+    //    std::cout << rows << std::endl;
+    //    char a;
+    //    std::cin >> a;
+    //}
+
+    //char a;
+
+    //CONSOLE_SCREEN_BUFFER_INFO csbi;
+    //
+    //    GetConsoleScreenBufferInfo(GetStdHandle(STD_OUTPUT_HANDLE), &csbi);
+    ///*while (true) {
+
+    //    std::cout << "\033[1;1H" << csbi.dwCursorPosition.X << ", " << csbi.dwCursorPosition.X << std::endl;
+    //}*/
+
+    ////SetConsoleCursorPosition();
+
+    //std::cout << csbi.dwMaximumWindowSize.X << std::endl;
+    //std::cout << csbi.dwMaximumWindowSize.Y << std::endl;
+    //
+    //std::cin >> a;
+
+    //COORD max;
+    //max = GetLargestConsoleWindowSize(GetStdHandle(STD_OUTPUT_HANDLE));
+    //
+    //SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE), max);
+
+
+    //std::cout << max.X << std::endl;
+    //std::cout << max.Y << std::endl;
+
+    //SMALL_RECT blah = {
+    //    0,
+    //    0,
+    //    max.X - 1,
+    //    max.Y - 1
+    //};
+
+    ////SetConsoleDisplayMode(GetStdHandle(STD_OUTPUT_HANDLE), CONSOLE_FULLSCREEN_MODE, &max);
+
+    //if (SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE), true, &blah)) {
+    //    std::cout << "success";
+    //}
+    //else {
+    //    std::cout << "fail";
+    //}
+
+    //std::cin >> a;
+
+
+
+
     bool UP1;
     bool DOWN1;
     bool UP2;
@@ -136,7 +218,7 @@ int main() {
         if (DOWN2) {
             player2.vel.y += 2;
         }
-
+        
         if (player1.getEdge("up") + player1.vel.y <= 0) {
             player1.setEdge("up", 0);
             player1.vel.y = 0;
@@ -145,7 +227,7 @@ int main() {
             player1.setEdge("down", screen.height - 1);
             player1.vel.y = 0;
         }
-
+        
         if (player2.getEdge("up") + player2.vel.y <= 0) {
             player2.setEdge("up", 0);
             player2.vel.y = 0;

@@ -2,20 +2,24 @@
 #include <string>
 
 class Screen {
-public:
-    int width;
-    int height;
-    char screenMatrix[200][400];
+    private:    
+        char** screenMatrix;
+    
+    public:
+        int width;
+        int height;
 
-    Screen(int width, int height);
+        Screen(int width, int height);
 
-    void reset();
+        ~Screen();
 
-    void input(char text, int x, int y);
+        void reset();
 
-    void rect(char text, int x, int y, int width, int height);
+        void input(char text, int x, int y);
 
-    void text(std::string text, int x, int y);
+        void rect(char text, int x, int y, int width, int height);
 
-    void print();
+        void text(std::string text, int x, int y);
+
+        void print();
 };
