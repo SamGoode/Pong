@@ -1,6 +1,5 @@
 #include "Screen.h"
 #include <iostream>
-#include <windows.h>
 
 Screen::Screen(int width, int height) {
     this->width = width;
@@ -57,9 +56,7 @@ void Screen::text(std::string text, int x, int y) {
 }
 
 void Screen::print() {
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), { 0, 0 });
-    
-    std::string printout;
+    std::string printout = "\x1b[?25l\x1b[1;1H";
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
             printout += screenMatrix[i][j];
@@ -68,6 +65,7 @@ void Screen::print() {
             printout += "\n";
         }
     }
+    printout += "\x1b[?25h";
 
     std::cout << printout;
 }
