@@ -65,7 +65,7 @@ void Screen::print() {
             printout += "\n";
         }
     }
-    printout += "\x1b[?25h";
+    //printout += "\x1b[?25h";
 
     std::cout << printout;
 }
